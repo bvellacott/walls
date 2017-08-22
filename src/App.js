@@ -1,5 +1,5 @@
-import { element, Div } from 'bdom'
-import { dispatch } from './store'
+import { element, Div, text } from 'bdom'
+import { dispatch, subscribe, getState } from './store'
 import { navigate } from './history/actions'
 import logo from './logo.svg'
 import './App.css'
@@ -8,6 +8,7 @@ class App extends Div {
   constructor(props) {
     super(props);
     this.className = 'App'
+    this.currentLocation = text('?')
     this.appendChild(
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -20,6 +21,7 @@ class App extends Div {
           <li><a onclick={ () => dispatch(navigate('/Backbone')) }>Go to Backbone</a></li>
           <li><a onclick={ () => dispatch(navigate('/Knockout')) }>Go to Knockout</a></li>
         </ul>
+        <h3>{this.currentLocation}</h3>
       </div>
     )
     this.appendChild(
@@ -27,8 +29,15 @@ class App extends Div {
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
     )
+
+    this.render = () => {
+      this.currentLocation.nodeValue = getState().path
+    }
+
+    subscribe(this.render)
   }
-  render() { console.log('rendering...') }
+
+  
 }
 
 export default App

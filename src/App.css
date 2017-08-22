@@ -26,3 +26,7 @@
 .App ul {
   list-style: none;
 }
+
+.App a {
+  cursor: pointer;
+}
