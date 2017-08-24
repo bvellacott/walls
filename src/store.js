@@ -25,4 +25,9 @@ export const {
 	getState 
 } = store
 
+export const bind = (fn) => {
+	store.subscribe( () => fn(getState()) )
+	return fn
+}
+
 export default store

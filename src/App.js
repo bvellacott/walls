@@ -1,5 +1,5 @@
 import { element, Div, text } from 'bdom'
-import { dispatch, subscribe, getState } from './store'
+import { dispatch, subscribe, getState, bind } from './store'
 import { navigate } from './history/actions'
 import logo from './logo.svg'
 import './App.css'
@@ -29,15 +29,11 @@ class App extends Div {
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
     )
-
-    this.render = () => {
-      this.currentLocation.nodeValue = getState().path
-    }
-
-    subscribe(this.render)
   }
 
-  
+  render = bind((state) => {
+    this.currentLocation.nodeValue = getState().path
+  })
 }
 
 export default App
