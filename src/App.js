@@ -13,20 +13,13 @@ class App extends Div {
 
     const list = <ul/>
     this.keeper = keepOnParentStart(list, [
-      { condition: path => path !== '/King-Dom', 
-        elements: <li><a onclick={ () => dispatch(navigate('/King-Dom')) }>Go to King-Dom</a></li> },
-      { condition: path => path !== '/React', 
-        elements: <li><a onclick={ () => dispatch(navigate('/React')) }>Go to React</a></li> },
-      { condition: path => path !== '/Ember', 
-        elements: <li><a onclick={ () => dispatch(navigate('/Ember')) }>Go to Ember</a></li> },
-      { condition: path => path !== '/Angular', 
-        elements: <li><a onclick={ () => dispatch(navigate('/Angular')) }>Go to Angular</a></li> },
-      { condition: path => path !== '/Backbone', 
-        elements: <li><a onclick={ () => dispatch(navigate('/Backbone')) }>Go to Backbone</a></li> },
-      { condition: path => path !== '/Knockout', 
-        elements: <li><a onclick={ () => dispatch(navigate('/Knockout')) }>Go to Knockout</a></li> },
-      { condition: path => path !== '/Text-Node', 
-        elements: text("I'm a text node") },
+      [path => path !== '/King-Dom', <li><a onclick={ () => dispatch(navigate('/King-Dom')) }>Go to King-Dom</a></li> ],
+      [ path => path !== '/React', <li><a onclick={ () => dispatch(navigate('/React')) }>Go to React</a></li> ],
+      [ path => path !== '/Ember', <li><a onclick={ () => dispatch(navigate('/Ember')) }>Go to Ember</a></li> ],
+      [ path => path !== '/Angular', <li><a onclick={ () => dispatch(navigate('/Angular')) }>Go to Angular</a></li> ],
+      [ path => path !== '/Backbone', <li><a onclick={ () => dispatch(navigate('/Backbone')) }>Go to Backbone</a></li> ],
+      [ path => path !== '/Knockout', <li><a onclick={ () => dispatch(navigate('/Knockout')) }>Go to Knockout</a></li> ],
+      [ path => path !== '/Text-Node', text("I'm a text node") ],
     ])
 
     this.appendChild(
