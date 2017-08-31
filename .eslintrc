@@ -2,7 +2,7 @@
   "extends": "react-app",
   "settings": {
     "react": {
-      "pragma": "element"
+      "pragma": "El"
     }
   }
 }
