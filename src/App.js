@@ -1,37 +1,37 @@
-import { El, Div, text } from 'bdom'
+import { El, Div, text, H1, Svg, Link, Text, Figcaption, style } from 'bdom'
 import RouteList from './components/RouteList'
-import { dispatch, subscribe, getState, bind } from './store'
-import { navigate } from './history/actions'
-import { keepOnParentStart } from 'bdom-keep-order/es6'
+import Wall from './components/Wall'
+import Room from './components/Room'
+import { bind } from './store'
 import logo from './logo.svg'
-import './App.css'
+import './App.scss'
 
-class App extends Div {
-  constructor(props) {
-    super(props);
-    this.className = 'App'
-    this.currentLocation = text('/King-Dom')
+const currentLocation = text('/King-Dom')
+const list = new RouteList()
 
-    const list = new RouteList()
+const Room1 = (
+<Room x="100" y="100" width="200%" height="200%" walls={[{
+  name: "wall1", x1: 0, y1: 0, x2: 600, y2: 250, 'stroke-width': 10, stroke: "blue"
+}]} />)
 
-    this.appendChild(
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to King-Dom</h2>
-        {list}
-        <h3>{this.currentLocation}</h3>
-      </div>
-    )
-    this.appendChild(
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-    )
-  }
+window.Room1 = Room1
 
-  render = bind((state) => {
-    this.currentLocation.nodeValue = state.path
-  })
-}
+const House = (
+<svg>
+  <Room1/>
+</svg>)
+
+window.House = House
+
+const App = (
+<div class="App">
+  <svg width="100%" height="100%">
+    <House/>
+  </svg>
+</div>)
+
+bind((state) => {
+  currentLocation.nodeValue = state.path
+})
 
 export default App

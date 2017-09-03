@@ -165,8 +165,25 @@ module.exports = {
           // "style" loader turns CSS into JS modules that inject <style> tags.
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
+          // {
+          //   exclude: [ /node_modules/ ],
+          //   test: [/\.css$/, /\.scss$/, /\.sass?g$/],
+          //   // include: paths.appSrc,
+          //   use: [
+          //     require.resolve('style-loader'),
+          //     {
+          //       loader: require.resolve('css-loader'),
+          //       options: {
+          //         importLoaders: 1,
+          //       },
+          //     },
+          //     {
+          //       loader: "sass-loader"
+          //     }
+          //   ]
+          // },
           {
-            test: /\.css$/,
+            test: [/\.css$/, /\.scss$/, /\.sass?g$/],
             use: [
               require.resolve('style-loader'),
               {
@@ -194,6 +211,9 @@ module.exports = {
                     }),
                   ],
                 },
+              },
+              {
+                loader: "sass-loader"
               },
             ],
           },

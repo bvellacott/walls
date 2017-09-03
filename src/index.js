@@ -1,9 +1,8 @@
-// import 'babel-polyfill'
 import { El } from 'bdom';
-import store from './store'
-import './index.css';
+import './index.scss';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-document.getElementById('root').appendChild(<App />)
+document.getElementsByTagName('body')[0].appendChild(<App />)
+
 // registerServiceWorker();
