@@ -4,7 +4,10 @@ import Wall from './Wall'
 class Room extends El {
   constructor(props) {
     super('svg', {...props, ...{ walls: null }})
-    this.title = <text>{props.name}</text>
+
+    const { x, y } = props
+
+    this.title = <text x={75} y={75} >{props.name}</text>
     this.wallRegistry = {}
     this.wallEls = []
 
