@@ -2,6 +2,8 @@
   text-align: center;
   width: 100%;
   height: 100%;
+  position: absolute;
+  transition: top .75s, left .75s;
 }
 
 .App-logo {
@@ -31,4 +33,9 @@
 
 .App a {
   cursor: pointer;
+}
+
+.House {
+  position: absolute;
+  transition: top .75s, left .75s;
 }

@@ -2,7 +2,7 @@ import { El, Div, text, H1, Svg, Link, Text, Figcaption, style } from 'bdom'
 import RouteList from './components/RouteList'
 import Wall from './components/Wall'
 import Room from './components/Room'
-import { bind } from './store'
+import { getState, bind } from './store'
 import logo from './logo.svg'
 import './App.scss'
 
@@ -51,6 +51,7 @@ const Room4 = (
 	{ name: "wall4", x1: 1030, y1: 255, x2: 50, y2: 255, 'stroke-width': 10, stroke: "blue" },
 ]} />)
 
+// alert(getState().path)
 const House = (
 <svg>
   <Room1/>
@@ -69,7 +70,10 @@ const App = (
 </div>)
 
 bind((state) => {
-  currentLocation.nodeValue = state.path
+	const parts = state.path.split(':')
+	App.style.left = parts[0] + 'px'
+	App.style.top = parts[1] + 'px'
+  // currentLocation.nodeValue = state.path
 })
 
 export default App

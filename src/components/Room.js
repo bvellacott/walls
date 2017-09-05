@@ -1,5 +1,7 @@
 import { El } from 'bdom'
 import Wall from './Wall'
+import { dispatch, bind } from '../store'
+import { navigate } from '../history/actions'
 
 class Room extends El {
   constructor(props) {
@@ -8,6 +10,8 @@ class Room extends El {
     const { x, y } = props
 
     this.title = <text x={75} y={75} >{props.name}</text>
+    this.title.onclick = () => { dispatch(navigate((500-x) + ':' + (350-y))) } 
+
     this.wallRegistry = {}
     this.wallEls = []
 
