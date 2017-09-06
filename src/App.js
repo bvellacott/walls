@@ -2,12 +2,13 @@ import { El, Div, text, H1, Svg, Link, Text, Figcaption, style } from 'bdom'
 import RouteList from './components/RouteList'
 import Wall from './components/Wall'
 import Room from './components/Room'
-import { getState, bind } from './store'
+import { dispatch, getState, bind } from './store'
+import { navigate } from './history/actions'
 import logo from './logo.svg'
 import './App.scss'
 
 const currentLocation = text('/King-Dom')
-const list = new RouteList()
+const routes = new RouteList()
 
 const Room1 = (
 <Room x={0} y={0} name="Kids room" walls={[
@@ -62,17 +63,36 @@ const House = (
 
 window.House = House
 
-const App = (
-<div class="App">
+const list = (
+<ul class='list'>
+	<li><a onclick={ () => dispatch(navigate((100) + ':' + (150))) } >Kids room</a></li>
+	<li><a onclick={ () => dispatch(navigate((175) + ':' + (150))) } >Parents room</a></li>
+	<li><a onclick={ () => dispatch(navigate((155) + ':' + (150))) } >Living room</a></li>
+	<li><a onclick={ () => dispatch(navigate((100) + ':' + (-200))) } >Corridoor</a></li>
+</ul>
+)
+
+const view = (
+<div class="view" >
   <svg width="100%" height="100%">
     <House/>
   </svg>
 </div>)
 
+
+const App = (
+<div class="App">
+	<div className="view-container">
+		{view}
+	</div>
+	{list}
+</div>)
+
 bind((state) => {
+	console.log(state)
 	const parts = state.path.split(':')
-	App.style.left = parts[0] + 'px'
-	App.style.top = parts[1] + 'px'
+	view.style.left = parts[0] + 'px'
+	view.style.top = parts[1] + 'px'
   // currentLocation.nodeValue = state.path
 })
 
